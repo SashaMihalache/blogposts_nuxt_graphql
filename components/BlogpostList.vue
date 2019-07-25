@@ -21,7 +21,7 @@ export default {
 
   methods: {
     handleGoToBlogpost(id) {
-      console.log(id);
+      this.$router.push(`/blogposts/${id}`)
     },
     
   }

@@ -66,3 +66,41 @@ p {
   }
 
 }
+
+
+.blogpost-detail {
+  display: flex;
+  flex-direction: column;
+
+  .blog-body {
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .blog-author {
+    align-self: flex-end;
+  }
+
+  .comments-list {
+    margin: 0;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+
+    .comment-item {
+      display: flex;
+      margin: 0;
+
+      .comment-detail {
+        font-style: italic;
+      }
+      
+      .comment-author {
+        font-size: 10;
+        margin-right: 10px;
+        color: grey;
+      }
+    }
+
+  }
+}
