@@ -4,8 +4,8 @@
       h1 All Blogposts page
 
     div
-      a(href='blogposts/add') Add New Blogpost
-
+      a(v-if="isLogged" href='blogposts/add') Add New Blogpost
+      a(v-else href='/') Log in to post a blog
     BlogpostList(:blogposts="blogposts")
 
     div
@@ -21,8 +21,13 @@ export default {
 
   data() {
     return {
-      blogposts: []
+      blogposts: [],
+      isLogged: false
     }
+  },
+
+  mounted() {
+    this.isLogged = !!JSON.parse(localStorage.getItem('user'))
   },
   
   async asyncData({ app }) {
@@ -37,7 +42,7 @@ export default {
 
   methods: {
     handleLogout() {
-      window.localStorage.removeItem('user');
+      localStorage.removeItem('user');
       this.$router.push('/');
     }
   }
