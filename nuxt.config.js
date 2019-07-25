@@ -47,7 +47,7 @@ export default {
     errorHandler: '~/plugins/apollo-error-handler.js',
     clientConfigs: {
       default: {
-        httpEndpoint: 'http://localhost:3001'
+        httpEndpoint: 'http://localhost:3001/graphql'
       }
     }
   },
@@ -59,6 +59,9 @@ export default {
     ** You can extend webpack config here
     */
     extend(config, ctx) {
+      if(ctx.isDev) {
+        config.devtool = 'source-map';
+      }
     }
   }
 }
