@@ -4,10 +4,9 @@
       h1 Login Page
     div
       input(type='text' v-model='username')
+      p(v-if="hasError") User not found
     div
       button(@click='handleLogin') Login
-    div
-      a(href="/blogposts") Go to blogs
 </template>
 
 <script>
@@ -17,7 +16,8 @@ export default {
 
   data() {
     return {
-      username: ''
+      username: '',
+      hasError: false
     }
   },
   
@@ -27,12 +27,21 @@ export default {
 
   methods: {
     async handleLogin() {
-
       const result = await this.$apollo.query({
-        query: loginQuery
+        query: loginQuery,
+        variables: {
+          username: this.username
+        }
       })
+      console.log('Login Query Result: ', result);
 
-      console.log('INTRA', result);
+      const { data } = result;
+
+      if (data.username) {
+        this.$router.push('/blogposts');
+      } else {
+        this.hasError = true;
+      }
     }
   }
 }
