@@ -1,8 +1,8 @@
 import gql from 'graphql-tag'
 
 export default gql`
-  query loginQuery($username: String!) {
-    username(name: $username) {
+  query user($username: String!) {
+    user(name: $username) {
       id
       name
       email

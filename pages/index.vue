@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import loginQuery from '@/static/graphql/queries/loginQuery';
+import getUserQuery from '@/static/graphql/queries/getUserQuery';
 
 export default {
 
@@ -28,7 +28,7 @@ export default {
   methods: {
     async handleLogin() {
       const result = await this.$apollo.query({
-        query: loginQuery,
+        query: getUserQuery,
         variables: {
           username: this.username
         }
@@ -37,11 +37,16 @@ export default {
 
       const { data } = result;
 
-      if (data.username) {
-        this.$router.push('/blogposts');
+      if (data.user) {
+        this.handlePostLogin(data.user);
       } else {
         this.hasError = true;
       }
+    },
+
+    handlePostLogin(user) {
+      window.localStorage.setItem('user', JSON.stringify(user))
+      this.$router.push('/blogposts');
     }
   }
 }
