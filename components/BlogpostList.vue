@@ -1,11 +1,12 @@
 <template lang="pug">
-  .container
-    div(
+  .blogpost-list
+    .blogpost-item(
       @click="handleGoToBlogpost(blogpost.id)"
       v-for="blogpost in blogposts"
       :key="blogpost.id"
     )
-      div {{ blogpost.bodyShort }} 
+      .header {{ blogpost.bodyShort }} 
+      .author written by: {{ blogpost.user.email }}
 </template>
 
 <script>
