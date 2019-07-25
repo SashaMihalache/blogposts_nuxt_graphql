@@ -11,9 +11,8 @@
 <script>
 
 export default {
+  asyncData(context) {
+    console.log(context.app.apolloProvider.defaultClient);
+  },
 }
 </script>
-
-<style>
-
-</style>
