@@ -21,10 +21,6 @@ export default {
     }
   },
   
-  asyncData(context) {
-    // console.log(context.app.apolloProvider.defaultClient);
-  },
-
   methods: {
     async handleLogin() {
       const result = await this.$apollo.query({
